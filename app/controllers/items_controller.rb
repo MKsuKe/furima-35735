@@ -3,4 +3,13 @@ class ItemsController < ApplicationController
   def index
     
   end
+  def new
+    @item = Item.new
+  end
+
+  private
+
+  def message_params
+    params.require(:item).permit(:name, :image, :detail, :category, :status, :charge, :area, :day, :price).merge(user_id: current_user.id)
+  end
 end
